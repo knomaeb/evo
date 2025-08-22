@@ -1,4 +1,5 @@
 import java.util.Properties
+import java.io.File
 
 plugins {
     alias(libs.plugins.android.application)
@@ -39,10 +40,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "TMDB_API_KEY", "\"${localProps.getProperty("TMDB_API_KEY")}\"")
         }
 
         debug {
-            buildConfigField("String", "TMDB_API_KEY", localProps.getProperty("TMDB_API_KEY"))
+            buildConfigField("String", "TMDB_API_KEY", "\"${localProps.getProperty("TMDB_API_KEY")}\"")
         }
     }
     compileOptions {
